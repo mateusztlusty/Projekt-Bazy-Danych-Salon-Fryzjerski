@@ -105,3 +105,11 @@ as
 	SELECT * from Spotkanie;
 
 SELECT id_spotkania FROM Spotkanie WHERE id_fryzjer = 3;
+
+CREATE PROCEDURE [AktualizacjaTelefonu] @m INT, @n VARCHAR(15)
+as
+	UPDATE Klient SET telefon = @n WHERE @m = id_klient;
+
+	exec AktualizacjaTelefonu '1', '+48 765 776 222' ;
+
+	SELECT * from Klient;

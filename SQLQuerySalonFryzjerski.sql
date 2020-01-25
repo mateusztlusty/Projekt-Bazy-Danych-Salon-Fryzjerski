@@ -40,7 +40,7 @@ ADD FOREIGN KEY (id_klient) REFERENCES Spotkanie(id_klient);
 ALTER TABLE Typ
 ADD FOREIGN KEY (id_typ) REFERENCES Spotkanie(typ);
 
-/* uzupe�nienie tabeli przyk�adowymi danymi */
+/* uzupe³nienie tabeli przyk³adowymi danymi */
 
 INSERT INTO Fryzjer VALUES (1, 'Tomasz', 'Lenart', 1, '+48 666 000 666', 'tlenart@gg.pl');
 INSERT INTO Fryzjer VALUES (2, 'Karol', 'Palka', 3, '+48 666 888 666', 'kpalka@gg.pl')
@@ -51,16 +51,16 @@ SELECT * from Fryzjer;
 INSERT INTO Typ VALUES (1, 'Farbowanie', '120 ZL', '150 MIN');
 INSERT INTO Typ VALUES (2, 'Cieniowanie', '120 ZL', '120 MIN');
 INSERT INTO Typ VALUES (3, 'Loki', '80 ZL', '100 MIN');
-INSERT INTO Typ VALUES (4, 'Strzyzenie kr�tkie', '20 ZL', '15 MIN');
-INSERT INTO Typ VALUES (5, 'Strzyzenie p�d�ugie', '35 ZL', '25 MIN');
-INSERT INTO Typ VALUES (6, 'Strzyenie d�ugie', '50 ZL', '35 MIN');
+INSERT INTO Typ VALUES (4, 'Strzyzenie krótkie', '20 ZL', '15 MIN');
+INSERT INTO Typ VALUES (5, 'Strzyzenie pó³d³ugie', '35 ZL', '25 MIN');
+INSERT INTO Typ VALUES (6, 'Strzyenie d³ugie', '50 ZL', '35 MIN');
 INSERT INTO Typ VALUES (7, 'Grzywka', '50 ZL', '30 MIN');
 INSERT INTO Typ VALUES (8, 'Effilage', '100 ZL', '80 MIN');
 SELECT * from Typ;
 
 INSERT INTO Klient VALUES (1, 'Krystian', 'Grzesik', 'kgrzesik23', 'papapa23', '+48 543 345 543', null );
 INSERT INTO Klient VALUES (2, 'Monika', 'Faja', 'fajaa43', 'palopa23', '+48 543 999 000', null );
-INSERT INTO Klient VALUES (3, 'W�adys�awa', 'barszcz', 'bbaarr', 'krupnik', '+48 576 543 765', 'barszczyk@on.pl' );
+INSERT INTO Klient VALUES (3, 'W³adys³awa', 'barszcz', 'bbaarr', 'krupnik', '+48 576 543 765', 'barszczyk@on.pl' );
 INSERT INTO Klient VALUES (4, 'Kasia', 'Bauman', 'kasiab23', 'lalalaland', '+48 545 345 678', null );
 INSERT INTO Klient VALUES (5, 'Brylant', 'Gradz', 'gradzdd', 'tratata52', '+48 345 345 543', 'gradz@on.pl' );
 INSERT INTO Klient VALUES (6, 'Krystian', 'Kuper', 'kkuper2', 'ddada', '+48 547 345 543', null );
@@ -74,7 +74,7 @@ INSERT INTO Spotkanie VALUES (4, '20191111 12:30:00 AM', 5, 6, 2);
 INSERT INTO Spotkanie VALUES (5, '20191111 12:40:00 AM', 1, 4, 3);
 SELECT * from Spotkanie;
 
-/* przyk�adowe polecenia i procedury */
+/* przyk³adowe polecenia i procedury */
 
 SELECT imie, nazwisko FROM Fryzjer ORDER BY numer_stanowiska;
 
@@ -96,4 +96,12 @@ as
 
 	SELECT * from Fryzjer;
 	
+CREATE PROCEDURE [DodajSpotkanie] @g INT, @h DATETIME, @j INT, @k INT, @l INT
+as
+	insert into Spotkanie values (@g, @h, @j, @k, @l);
 
+	exec DodajSpotkanie '7' , '20191111 14:40:00' , '1' , '1' , '3' ;
+
+	SELECT * from Spotkanie;
+
+SELECT id_spotkania FROM Spotkanie WHERE id_fryzjer = 3;
